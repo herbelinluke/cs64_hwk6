@@ -9,6 +9,29 @@
 conv:
     # TODO: Write your function code here
 
+	li $v0, 0
+	li $t0, 0
+	li $t2, 2
+
+	# from the main code, a1 seems to be both y and n; not the same for c++	
+	move $a2, $a1
+loop:
+	bge $t0, $a2, return
+	move $t1, $a1
+	sll $t1, $t1, 2
+	sub $v0, $v0, $a0
+	add $v0, $v0, $t1
+	
+	blt $a0, $t2, noty
+	sub $a1, $a1, $a0
+noty:
+	addi $a0, $a0, 1
+	addi $t0, $t0, 1
+	j loop
+
+return:
+	jr $ra	
+
 main:  # DO NOT MODIFY THE MAIN SECTION
     li $a0, 5
     li $a1, 7
@@ -21,3 +44,5 @@ main:  # DO NOT MODIFY THE MAIN SECTION
 
 exit:
 	# TODO: Write code to properly exit a SPIM simulation
+	li $v0, 10
+	syscall
