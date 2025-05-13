@@ -14,7 +14,8 @@ conv:
 	li $t2, 2
 
 	# from the main code, a1 seems to be both y and n; not the same for c++	
-	move $a2, $a1
+	# autograder failing so trying to change this
+	#move $a2, $a1
 loop:
 	bge $t0, $a2, return
 	move $t1, $a1
