@@ -7,10 +7,8 @@
 
 .data
 	array: .word 1 2 3 4 5 6 7 8 9 10
-	cout:  .asciiz "The contents of the arrary are:\n"
+	cout:  .asciiz "The contents of the array are:\n"
 	newline:  .asciiz "\n"
-
-
 .text
 printArr:
     # TODO: Write your function code here
