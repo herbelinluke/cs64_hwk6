@@ -93,7 +93,61 @@ Exit:
 # YOU CAN ONLY MODIFY THIS FILE FROM THIS POINT ONWARDS:
 SwapCase:
     #TODO: write your code here, $a0 stores the address of the string
-    
+	li $t0, 65
+	li $t1, 90
+	li $t2, 97
+	li $t3, 122	
+	move $t4, $a0
+loop:
+	lb $t5, 0($t4)
+	bgt $t5, $t3, next
+	blt $t5, $t0, next
+	ble $t5, $t1, upper
+	bge $t5, $t2, lower
+	j next
+upper:
+	li $v0, 11
+	move $a0, $t5
+	syscall
+	la $a0, newline 
+	li $v0, 4
+	syscall
+	li $v0, 11
+	addiu $a0, $t5, 32
+	syscall
+	sb $a0, 0($t4)
+	la $a0, newline 
+	li $v0, 4
+	syscall
+	j next
+
+lower:
+	li $v0, 11
+	move $a0, $t5
+	syscall
+	la $a0, newline 
+	li $v0, 4
+	syscall
+	li $v0, 11
+	addiu $a0, $t5, -32
+	syscall
+	sb $a0, 0($t4)
+	la $a0, newline 
+	li $v0, 4
+	syscall
+	j next
+next:
+	addiu $t4, $t4, 1
+	lb $t5, 0($t4)
+	beq $t5, $zero, endSC
+ 	j loop 
+
+endSC: 
+	addi $sp, $sp, -4
+	sw $ra, 0($sp)
+	jal ConventionCheck
     # Do not remove the "jr $ra" line below!!!
     # It should be the last line in your function code!
+	lw $ra, 0($sp)
+	addi $sp, $sp, 4
     jr $ra
