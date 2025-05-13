@@ -12,7 +12,7 @@ conv:
 	li $v0, 0
 	li $t0, 0
 	# maybe n is always 7?
-	li $a2, 7
+	#li $a2, 7
 	li $t2, 2
 
 	# from the main code, a1 seems to be both y and n; not the same for c++	
