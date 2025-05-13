@@ -15,7 +15,7 @@ conv:
 
 	# from the main code, a1 seems to be both y and n; not the same for c++	
 	# autograder failing so trying to change this
-	#move $a2, $a1
+	move $a2, $a1
 loop:
 	bge $t0, $a2, return
 	move $t1, $a1
@@ -31,6 +31,9 @@ noty:
 	j loop
 
 return:
+	move $a0, $v0
+	li $v0, 1
+	syscall
 	jr $ra	
 
 main:  # DO NOT MODIFY THE MAIN SECTION
